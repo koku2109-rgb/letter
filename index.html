@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>An Open Letter For You</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #fff0f5, #ffe6ec);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Floating Hearts */
+.heart-bg {
+  position: absolute;
+  color: rgba(255, 0, 85, 0.2);
+  font-size: 20px;
+  animation: float 8s linear infinite;
+}
+
+@keyframes float {
+  from { transform: translateY(100vh); }
+  to { transform: translateY(-10vh); }
+}
+
+/* Container */
+.container {
+  position: relative;
+  width: 400px;
+  height: 300px;
+  perspective: 1200px;
+}
+
+/* Envelope */
+.envelope {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  cursor: pointer;
+}
+
+/* Envelope Body */
+.envelope-body {
+  background: #f8c8d0;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  position: absolute;
+  z-index: 1;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+/* Envelope Flap */
+.envelope-flap {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #f4b6c2;
+  clip-path: polygon(0 0, 50% 50%, 100% 0);
+  transform-origin: top;
+  transition: transform 0.8s ease;
+  z-index: 2;
+  border-radius: 12px 12px 0 0;
+}
+
+/* Heart Seal */
+.seal {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background: red;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  z-index: 3;
+}
+
+.seal:before,
+.seal:after {
+  content: "";
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background: red;
+  border-radius: 50%;
+}
+
+.seal:before {
+  top: -25px;
+  left: 0;
+}
+
+.seal:after {
+  left: -25px;
+  top: 0;
+}
+
+/* Letter */
+.letter {
+  position: absolute;
+  width: 90%;
+  height: 90%;
+  background: white;
+  top: 5%;
+  left: 5%;
+  padding: 25px;
+  border-radius: 10px;
+  overflow-y: auto;
+  transform: translateY(100%);
+  transition: transform 1s ease;
+  z-index: 0;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.letter h2 {
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 15px;
+  color: #d6336c;
+}
+
+.letter p {
+  font-size: 14px;
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+/* Open State */
+.container.open .envelope-flap {
+  transform: rotateX(180deg);
+}
+
+.container.open .letter {
+  transform: translateY(0%);
+  z-index: 4;
+}
+</style>
+</head>
+<body>
+
+<script>
+function createHearts() {
+  const heart = document.createElement("div");
+  heart.classList.add("heart-bg");
+  heart.innerHTML = "❤";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = (10 + Math.random() * 20) + "px";
+  heart.style.animationDuration = (5 + Math.random() * 5) + "s";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 8000);
+}
+setInterval(createHearts, 600);
+</script>
+
+<div class="container" id="envelopeContainer">
+  <div class="envelope">
+    <div class="envelope-body"></div>
+    <div class="envelope-flap"></div>
+    <div class="seal"></div>
+    <div class="letter">
+  <h2>Dear Sister,</h2>
+
+  <p>This is not a special occasion.  
+  Not a festival.  
+  Not a reminder.</p>
+
+  <p>Just a quiet little note for someone very special in my life — <strong>YOU.</strong></p>
+
+  <p>I may not always say it, but I truly feel lucky to have you as my sister.</p>
+
+  <p>Through childhood fights, silly arguments, shared secrets, and endless memories — you have always been there.</p>
+
+  <p>You are strong in ways you don’t even realize.  
+  You care deeply.  
+  You give so much love without expecting anything in return.</p>
+
+  <p>No matter how busy life gets or where we both go in the future, one thing will never change —  
+  I will always be there for you.</p>
+
+  <p>Whenever you feel tired, confused, or unsure… remember that you are capable, brave, and incredibly important.</p>
+
+  <p>You deserve happiness.  
+  You deserve peace.  
+  You deserve all the success coming your way.</p>
+
+  <p>And if the world ever feels heavy, just know you have a sibling who believes in you completely.</p>
+
+  <p><strong>I’m proud of you. Always.</strong></p>
+
+  <p><strong>With lots of love ❤️</strong></p>
+
+  <p>Your Forever Partner in Crime</p>
+</div>
+
+  </div>
+</div>
+
+<script>
+document.getElementById("envelopeContainer").addEventListener("click", function() {
+  this.classList.toggle("open");
+});
+</script>
+
+</body>
+</html>
