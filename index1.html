@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Open Letter</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:'Poppins',sans-serif;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+  background:linear-gradient(135deg,#ffe6f0,#ffd6e8,#ffeef5);
+}
+
+/* Floating Hearts */
+.heart-bg{
+  position:absolute;
+  color:rgba(255,0,90,0.25);
+  animation:float 10s linear infinite;
+}
+
+@keyframes float{
+  from{transform:translateY(100vh);}
+  to{transform:translateY(-10vh);}
+}
+
+/* Container */
+.container{
+  position:relative;
+  width:550px;
+  height:380px;
+  perspective:1500px;
+}
+
+/* Envelope */
+.envelope{
+  position:relative;
+  width:100%;
+  height:100%;
+  cursor:pointer;
+}
+
+/* Envelope Body */
+.envelope-body{
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:linear-gradient(145deg,#f8c8d0,#ffb6c1);
+  border-radius:18px;
+  z-index:5;
+  box-shadow:0 25px 60px rgba(255,0,100,0.2);
+}
+
+/* Flap */
+.envelope-flap{
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:linear-gradient(145deg,#f4b6c2,#ff9db3);
+  clip-path:polygon(0 0,50% 55%,100% 0);
+  transform-origin:top;
+  transition:transform 1s ease;
+  z-index:6;
+  border-radius:18px 18px 0 0;
+}
+
+/* Seal */
+.seal{
+  position:absolute;
+  width:65px;
+  height:65px;
+  background:#ff1744;
+  top:45%;
+  left:50%;
+  transform:translate(-50%,-50%) rotate(45deg);
+  z-index:7;
+  box-shadow:0 0 25px rgba(255,0,80,0.6);
+}
+
+.seal:before,
+.seal:after{
+  content:"";
+  position:absolute;
+  width:65px;
+  height:65px;
+  background:#ff1744;
+  border-radius:50%;
+}
+
+.seal:before{ top:-32px; left:0; }
+.seal:after{ left:-32px; top:0; }
+
+/* Letter */
+.letter{
+  position:absolute;
+  width:92%;
+  height:92%;
+  top:4%;
+  left:4%;
+  padding:35px;
+  border-radius:16px;
+  overflow-y:auto;
+
+  background:#fff0f6;
+  background-image:radial-gradient(rgba(255,0,90,0.15) 2px,transparent 2px);
+  background-size:40px 40px;
+
+  transform:translateY(100%);
+  opacity:0;              /* 🔥 hidden */
+  transition:all 1.2s ease;
+  z-index:1;
+  box-shadow:0 20px 60px rgba(0,0,0,0.15);
+}
+
+/* Letter Text */
+.letter h2{
+  font-family:'Playfair Display',serif;
+  margin-bottom:20px;
+  color:#d6336c;
+  font-size:28px;
+}
+
+.letter p{
+  font-size:17px;
+  margin-bottom:14px;
+  line-height:1.8;
+}
+
+/* OPEN STATE */
+.container.open .envelope-flap{
+  transform:rotateX(180deg);
+}
+
+.container.open .letter{
+  transform:translateY(0);
+  opacity:1;      /* 🔥 visible only after open */
+  z-index:8;
+}
+</style>
+</head>
+
+<body>
+
+<script>
+function createHearts(){
+  for(let i=0;i<3;i++){
+    const heart=document.createElement("div");
+    heart.classList.add("heart-bg");
+    heart.innerHTML="❤";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.fontSize=(15+Math.random()*35)+"px";
+    heart.style.animationDuration=(6+Math.random()*6)+"s";
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),12000);
+  }
+}
+setInterval(createHearts,500);
+</script>
+
+<div class="container" id="envelopeContainer">
+  <div class="envelope">
+    <div class="envelope-body"></div>
+    <div class="envelope-flap"></div>
+    <div class="seal"></div>
+
+    <div class="letter">
+      <h2>Dear Sister,</h2>
+
+      <p>This is not a special occasion. Not a festival. Not a reminder.</p>
+      <p>Just a quiet little note for someone very special in my life — <strong>YOU.</strong></p>
+      <p>I truly feel lucky to have you as my sister.</p>
+      <p>Through childhood fights, shared secrets, and endless memories — you’ve always been there.</p>
+      <p>You are strong, kind, and incredibly important.</p>
+      <p>No matter what happens in life, I will always stand beside you.</p>
+      <p><strong>I’m proud of you. Always.</strong></p>
+      <p><strong>With lots of love ❤️</strong></p>
+    </div>
+
+  </div>
+</div>
+
+<script>
+document.getElementById("envelopeContainer")
+.addEventListener("click",function(){
+  this.classList.toggle("open");
+});
+</script>
+
+</body>
+</html>
