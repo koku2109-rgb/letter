@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+  font-family:'Poppins',sans-serif;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+  background:linear-gradient(135deg,#ffdde1,#ee9ca7);
+}
+
+/* Glowing Hearts Background */
+.heart{
+  position:absolute;
+  color:rgba(255,255,255,0.5);
+  animation:float 8s linear infinite;
+  text-shadow:0 0 15px rgba(255,255,255,0.8);
+}
+
+@keyframes float{
+  from{transform:translateY(100vh);}
+  to{transform:translateY(-10vh);}
+}
+
+/* Container */
+.container{
+  position:relative;
+  width:550px;
+  height:380px;
+  perspective:1500px;
+}
+
+/* Envelope */
+.envelope{
+  position:relative;
+  width:100%;
+  height:100%;
+  cursor:pointer;
+}
+
+.envelope-body{
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:linear-gradient(145deg,#ffb6c1,#ff8fab);
+  border-radius:18px;
+  z-index:5;
+  box-shadow:0 25px 60px rgba(0,0,0,0.25);
+}
+
+.envelope-flap{
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:linear-gradient(145deg,#ff9db3,#ff6f91);
+  clip-path:polygon(0 0,50% 55%,100% 0);
+  transform-origin:top;
+  transition:transform 1s ease;
+  z-index:6;
+  border-radius:18px 18px 0 0;
+}
+
+.seal{
+  position:absolute;
+  width:65px;
+  height:65px;
+  background:#ff1744;
+  top:45%;
+  left:50%;
+  transform:translate(-50%,-50%) rotate(45deg);
+  z-index:7;
+  box-shadow:0 0 25px rgba(255,0,80,0.8);
+}
+
+.seal:before,
+.seal:after{
+  content:"";
+  position:absolute;
+  width:65px;
+  height:65px;
+  background:#ff1744;
+  border-radius:50%;
+}
+
+.seal:before{top:-32px;}
+.seal:after{left:-32px;}
+
+/* Letter */
+.letter{
+  position:absolute;
+  width:92%;
+  height:92%;
+  top:4%;
+  left:4%;
+  padding:35px;
+  border-radius:16px;
+  overflow-y:auto;
+  background:#fff0f6;
+  transform:translateY(100%);
+  opacity:0;
+  transition:all 1.2s ease;
+  z-index:1;
+  box-shadow:0 20px 60px rgba(0,0,0,0.2);
+}
+
+/* Animated Name */
+.name{
+  font-family:'Playfair Display',serif;
+  font-size:30px;
+  color:#d6336c;
+  text-align:center;
+  margin-bottom:20px;
+  animation:glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow{
+  from{text-shadow:0 0 10px #ff99ac;}
+  to{text-shadow:0 0 25px #ff1744;}
+}
+
+/* Fade-in paragraphs */
+.fade-text{
+  opacity:0;
+  transform:translateY(15px);
+  transition:all 1s ease;
+}
+
+.container.open .fade-text{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* Typing effect */
+.typing{
+  font-weight:600;
+  margin-top:20px;
+  border-right:2px solid #d6336c;
+  white-space:nowrap;
+  overflow:hidden;
+  width:0;
+  animation:typing 3s steps(12) forwards,
+            blink .8s infinite;
+}
+
+@keyframes typing{
+  from{width:0}
+  to{width:120px}
+}
+
+@keyframes blink{
+  50%{border-color:transparent}
+}
+
+/* Open state */
+.container.open .envelope-flap{
+  transform:rotateX(180deg);
+}
+
+.container.open .letter{
+  transform:translateY(0);
+  opacity:1;
+  z-index:8;
+}
+</style>
+</head>
+
+<body>
+
+<script>
+/* Glowing Hearts Generator */
+function createHearts(){
+  for(let i=0;i<2;i++){
+    const heart=document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML="❤";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.fontSize=(15+Math.random()*30)+"px";
+    heart.style.animationDuration=(5+Math.random()*5)+"s";
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),10000);
+  }
+}
+setInterval(createHearts,600);
+</script>
+
+<div class="container" id="envelopeContainer">
+  <div class="envelope">
+    <div class="envelope-body"></div>
+    <div class="envelope-flap"></div>
+    <div class="seal"></div>
+
+    <div class="letter">
+  <h2>Hey You ❤️</h2>
+
+  <p>I don’t know the exact moment you became my favorite person…  
+  but somewhere between the late-night talks and the quiet comfort,  
+  you did.</p>
+
+  <p>You didn’t just walk into my life —  
+  you settled into my heart like you were always meant to be there.</p>
+
+  <p>With you, everything feels different.  
+  Safer.  
+  Softer.  
+  Brighter.</p>
+
+  <p>You have this beautiful way of calming my chaos  
+  without even trying.</p>
+
+  <p>When I overthink, you reassure.  
+  When I doubt, you remind me.  
+  When I feel low, you lift me — gently.</p>
+
+  <p>Loving you doesn’t feel dramatic or complicated.  
+  It feels peaceful.  
+  It feels right.</p>
+
+  <p>I adore the little things about you —  
+  your smile, your patience,  
+  the way you care in ways most people wouldn’t even notice.</p>
+
+  <p>You don’t just hold my hand.  
+  You hold my heart carefully, like it matters.</p>
+
+  <p>If life ever gets loud or uncertain,  
+  I hope you remember this —</p>
+
+  <p>There is someone out here  
+  who feels incredibly lucky  
+  to call you theirs.</p>
+
+  <p><strong>And that someone… is me. ❤️</strong></p>
+
+  <p style="margin-top:25px;"><strong>Always choosing you. Always.</strong></p>
+</div>
+<div class="typing">I love you ❤️</div>
+  </div>
+</div>
+
+<script>
+document.getElementById("envelopeContainer")
+.addEventListener("click",function(){
+  this.classList.toggle("open");
+});
+</script>
+
+</body>
+</html>
